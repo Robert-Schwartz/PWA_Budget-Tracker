@@ -1,6 +1,10 @@
 let transactions = [];
 let myChart;
 
+
+// clear Data
+clearData = function ()
+
 fetch("/api/transaction")
   .then(response => {
     return response.json();
@@ -111,7 +115,7 @@ function sendTransaction(isAdding) {
   populateChart();
   populateTable();
   populateTotal();
-  
+
   // also send to server
   fetch("/api/transaction", {
     method: "POST",
@@ -121,7 +125,7 @@ function sendTransaction(isAdding) {
       "Content-Type": "application/json"
     }
   })
-  .then(response => {    
+  .then(response => {
     return response.json();
   })
   .then(data => {
@@ -151,3 +155,9 @@ document.querySelector("#add-btn").onclick = function() {
 document.querySelector("#sub-btn").onclick = function() {
   sendTransaction(false);
 };
+
+document.querySelector("#new-btn").onclick = function () {
+  clearData();
+};
+
+
